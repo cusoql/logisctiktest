@@ -1,85 +1,83 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  height: 100vh;
-}
-
 .landing {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  background: linear-gradient(135deg, #010b1c, #04132e);
+  justify-content: center;
+  overflow: hidden;
   color: white;
   text-align: center;
-  overflow: hidden;
-  height: 100vh;
+  font-family: "Inter", sans-serif;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 15, 25, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 1;
 }
 
 .content {
-  margin-top: 80px;
-  user-select: none;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
 }
 
 h1 {
-  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 800;
-  margin: 0;
-  background: linear-gradient(90deg, #223b75, #006dff, #8ad5ff);
+  background: linear-gradient(90deg, #00b4ff, #00ffaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 18px rgba(107, 226, 255, 0.4),
-               0 0 28px rgba(107, 226, 255, 0.25);
+  text-shadow: 0 0 25px rgba(0, 180, 255, 0.5);
 }
 
-.btn {
+p {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  opacity: 0.85;
+  text-shadow: 0 0 10px rgba(0, 180, 255, 0.3);
+}
+
+.btn-neon {
   display: inline-block;
-  padding: 18px 36px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #0040aa, #006dff);
-  background-size: 200% 200%;
-  border-radius: 14px;
+  margin-top: 40px;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, #00b4ff, #00ffaa);
   color: white;
+  border-radius: 12px;
+  font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-  transition: transform .3s ease, box-shadow .3s ease;
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
+  transition: all 0.3s ease;
 }
 
-.btn:hover {
-  animation: shimmer 2s infinite linear;
-  transform: translateY(-3px);
-  box-shadow: 0 14px 32px rgba(0,0,0,0.45);
+.btn-neon:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 40px rgba(0, 180, 255, 0.7);
 }
 
-@keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.bottom-btn {
-  margin-top: auto;
-  margin-bottom: 220px;
-  animation: slideUp 1s ease forwards;
-  opacity: 0;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
+/* Адаптив под телефоны */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
   }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 
-/* 📱 Мобильная адаптация */
-@media (max-width: 600px) {
-  h1 { font-size: 2.2rem; }
-  .btn { padding: 14px 26px; font-size: 1rem; }
-  .bottom-btn { margin-bottom: 120px; }
+  p {
+    font-size: 1.1rem;
+  }
+
+  .btn-neon {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
 }
