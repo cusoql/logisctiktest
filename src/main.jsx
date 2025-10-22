@@ -1,11 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage.jsx";
+import LogisticsSite from "./LogisticsSite.jsx";
 import "./index.css";
-import "swiper/css";
-import LogisticsSite from "./LogisticsSite";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <LogisticsSite />
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<LogisticsSite />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
