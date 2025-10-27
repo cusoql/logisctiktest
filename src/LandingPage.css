@@ -1,83 +1,139 @@
+/* ===== БАЗА ===== */
+body, html {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+}
+
+/* ===== ЗАГОЛОВОК ===== */
+h1 {
+  font-size: 30vw;
+  line-height: 1.1;
+  font-weight: 900;
+  margin-top: 140px;
+  background: linear-gradient(135deg, #0040aa, #006dff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    30px 0 40px rgba(0, 180, 255, 0.5),
+    20px 0 8px rgba(0, 255, 170, 0.3),
+    10px 0 10px rgba(0, 255, 255, 0.3);
+  letter-spacing: 3px;
+  animation: titleGlow 40s ease-in-out infinite alternate;
+}
+
+  
+
+
+/* ===== ЛЕНДИНГ ===== */
 .landing {
   position: relative;
   width: 100%;
   height: 100vh;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  color: white;
   text-align: center;
-  font-family: "Inter", sans-serif;
+  animation: parallaxMove 20s ease-in-out infinite alternate;
+  overflow: hidden;
 }
 
-.overlay {
+/* Мягкое затемнение */
+.landing::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 15, 25, 0.6);
+  background: rgba(5, 10, 20, 0.6);
   backdrop-filter: blur(2px);
   z-index: 1;
 }
 
+/* ===== КОНТЕНТ ===== */
 .content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
-  padding: 20px;
+  user-select: none;
+  animation: fadeIn 1.5s ease-in-out forwards;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 70%;
 }
 
-h1 {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 800;
-  background: linear-gradient(90deg, #00b4ff, #00ffaa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 25px rgba(0, 180, 255, 0.5);
-}
 
-p {
-  margin-top: 20px;
-  font-size: 1.3rem;
-  opacity: 0.85;
-  text-shadow: 0 0 10px rgba(0, 180, 255, 0.3);
-}
 
+/* ===== КНОПКА ===== */
 .btn-neon {
+  position: absolute;
+  bottom: 30px; /* 👇 кнопка внизу */
+  left: 50%;
+  transform: translateX(-50%);
   display: inline-block;
-  margin-top: 40px;
-  padding: 16px 36px;
-  background: linear-gradient(135deg, #00b4ff, #00ffaa);
+  padding: 10px 28px;
+  
+  padding: 10px 45px; /* больше кнопка */
+  font-size: 1.25rem;     /* крупный текст */
+  border-radius: 20px;
+  bottom: 40px;        /* опусти чуть ниже */
+  width: auto;
+
+  background: linear-gradient(135deg, #0040aa, #006dff);
+  border-radius: 20px;
   color: white;
-  border-radius: 12px;
-  font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
-  transition: all 0.3s ease;
+  box-shadow:
+    0 0 20px rgba(0, 180, 255, 0.5),
+    0 0 40px rgba(0, 255, 170, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  z-index: 3;
+  opacity: 1; /* 🔒 всегда видна */
 }
 
+/* ===== ХОВЕР ===== */
 .btn-neon:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 40px rgba(0, 180, 255, 0.7);
+  transform: translateX(-50%) translateY(-4px) scale(1.05);
+  box-shadow:
+    0 0 35px rgba(0, 180, 255, 0.8),
+    0 0 60px rgba(0, 255, 170, 0.5);
+  filter: brightness(1.2);
 }
 
-/* Адаптив под телефоны */
+/* ===== АНИМАЦИИ ===== */
+@keyframes parallaxMove {
+  0% { background-position: center top; }
+  50% { background-position: center 40px; }
+  100% { background-position: center bottom; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 40px rgba(0, 180, 255, 0.4), 0 0 80px rgba(0, 255, 170, 0.2); }
+  100% { text-shadow: 0 0 80px rgba(0, 180, 255, 0.7), 0 0 140px rgba(0, 255, 170, 0.5); }
+}
+
+/* ===== АДАПТИВ ===== */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2.2rem;
+    font-size: 5rem;
+    margin-top: 100px;
   }
-
-  p {
-    font-size: 1.1rem;
-  }
-
   .btn-neon {
-    padding: 14px 28px;
-    font-size: 1rem;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    bottom: 50px;
   }
 }
